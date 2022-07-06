@@ -1,5 +1,7 @@
 package com.gavinin.yt_bus_display.task;
 
+import org.springframework.stereotype.Component;
+
 import javax.annotation.PostConstruct;
 import java.io.*;
 import java.util.Properties;
@@ -11,6 +13,7 @@ import java.util.Properties;
  * @Date 5/7/2022 14:31
  * @Version 1.0
  **/
+@Component
 public class BusVersionUtil {
 
     public static final String CONFIG_FILE_NAME = "BusConfig";
@@ -34,6 +37,9 @@ public class BusVersionUtil {
         try {
             properties.load(new BufferedInputStream(new FileInputStream(CONFIG_FILE_NAME)));
         } catch (IOException ignore) {
+            properties.put(CURRENT_VERSION_FLAG, ORIGIN_VERSION);
+            initConfigProperties(properties);
+
         }
 
         String value = properties.getProperty(key);
@@ -56,7 +62,7 @@ public class BusVersionUtil {
 
     }
 
-    private void initConfigProperties(Properties pro) {
+    private static void initConfigProperties(Properties pro) {
         try {
             pro.store(new BufferedOutputStream(new FileOutputStream(CONFIG_FILE_NAME)), "Save Configs File.");
         } catch (IOException e) {

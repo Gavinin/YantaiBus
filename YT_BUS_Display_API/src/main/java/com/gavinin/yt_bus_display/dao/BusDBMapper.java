@@ -9,6 +9,6 @@ import java.util.List;
 @Configuration
 public interface BusDBMapper {
 
-    @Select("select distinct linename as line, startsite||'-'||endsite as detail  from ytcx_line ")
+    @Select("select linename as line, startsite||'-'||endsite as detail  from ytcx_line group by line")
     List<Line> findAllLines() ;
 }
