@@ -1,14 +1,13 @@
 package com.gavinin.yt_bus_display.service.impl;
 
-import com.gavinin.yt_bus_display.dao.BusDBMapper;
+import com.gavinin.yt_bus_display.entity.OnlineBusDTO;
+import com.gavinin.yt_bus_display.mapper.BusDBMapper;
 import com.gavinin.yt_bus_display.entity.Line;
+import com.gavinin.yt_bus_display.entity.Stop;
 import com.gavinin.yt_bus_display.service.LineService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -31,8 +30,22 @@ public class LineServiceImpl implements LineService {
 //    }
 
     @Override
-    public List<Line> getLines() {
-        return busDBMapper.findAllLines();
+    public List<Line> getLines(OnlineBusDTO onlineBusDTO) {
+        if (onlineBusDTO.getLineName().isBlank()) {
+            onlineBusDTO.setLineName("");
+        }else {
+            onlineBusDTO.setLineName("%" + onlineBusDTO.getLineName() + "%");
+        }
+
+        return busDBMapper.findByLines(onlineBusDTO.getLineName(), onlineBusDTO.getDirection());
+
 
     }
+
+    @Override
+    public List<Stop> getStopsByLine(String lineName, String directionEnum) {
+        return busDBMapper.selectStopByLine(lineName, directionEnum);
+    }
+
+
 }

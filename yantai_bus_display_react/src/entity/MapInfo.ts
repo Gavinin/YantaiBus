@@ -1,9 +1,9 @@
 interface MapInfo {
-    stationNam: string,
+    stopName: string,
     side:string,
     jingdu:string,
     weidu:string,
-    order:number
+    stopOrder:string
 }
 
 export default MapInfo;

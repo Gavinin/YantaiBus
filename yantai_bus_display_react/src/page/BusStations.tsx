@@ -4,24 +4,30 @@ import useInterval from "../hooks/userInterval";
 import GetOnlineBusResult from "../entity/GetOnlineBusResult";
 import http from "../util/RequestUtil";
 import YT_BUS_APIS from "../common/BusApiStatus";
-
+import {ReactComponent as BusLogo} from "../common/svg/bus.svg"
 import {useUserInfoContext} from "../context/UserInfoContext";
 import MapInfo from "../entity/MapInfo";
 import HTTP_METHODS from "../common/HttpMethod";
+import busData from "../common/json/test.json"
+import {Button, Card, Timeline} from "antd";
 import useMount from "../hooks/UseMount";
 
 
 const BusStations = () => {
-    const {selectedBusInfo, cleanInfo} = useUserInfoContext()
-    const [busInfo, setBusInfo] = useState<Array<GetOnlineBusResult> | null>(null)
-    const [mapInfo, setMapInfo] = useState<MapInfo[] | null>(null)
+    const {selectedBusInfo,setInfo, cleanInfo} = useUserInfoContext()
+    const [busInfoArray, setBusInfoArray] = useState<Array<GetOnlineBusResult> | null>(null)
+    const [mapInfoArray, setMapInfoArray] = useState<MapInfo[] | null>(null)
+    const [directionBtn, setDirectionBtn] = useState<boolean>(false)
+
     const getBusInfo = async () => {
         await http(YT_BUS_APIS.BUS, {
             data: selectedBusInfo
         }).then((response) => {
             if (response.data.length > 0) {
-                let result: Array<GetOnlineBusResult> = JSON.parse(response.data.json())
-                setBusInfo(result);
+                let result: Array<GetOnlineBusResult> = response.data
+                setBusInfoArray(result);
+            } else {
+                setBusInfoArray(busData.data);
             }
         })
     }
@@ -32,64 +38,98 @@ const BusStations = () => {
             data: selectedBusInfo
         }).then((response) => {
             if (response.data.length > 0) {
-                let result: Array<MapInfo> = JSON.parse(response.data.json())
-                setMapInfo(result);
-
+                let result: Array<MapInfo> = response.data
+                setMapInfoArray(result);
             }
         })
     }
-    useMount(async () => {
-        await getMapInfo();
+    useMount(()=>{
+        getMapInfo();
+        getBusInfo();
     })
+
+    useEffect(() => {
+        getMapInfo();
+
+    },[selectedBusInfo])
     useInterval(async () => {
 
         await getBusInfo();
-    }, 2000)
+    }, 3000)
 
     const Main = () => {
+        let timeLineItems: Array<JSX.Element> = []
+        let currentBusArray = busInfoArray;
+
+        //寻找当前车辆和地图的相对位置
+        currentBusArray?.forEach((currentBus) => {
+            if(currentBus.inorder==="0"){
+                let busTmp = <Timeline.Item key={currentBus.busno} dot={<BusLogo/>}>
+                    {currentBus.linename}--{currentBus.busno}
+                    <br/> 速度：{currentBus.speed}
+                </Timeline.Item>
+                timeLineItems.push(busTmp)
+            }
+        })
+        mapInfoArray?.forEach((mapInfo) => {
+                let tmp = <Timeline.Item key={mapInfo.stopOrder}
+                                         label={mapInfo.stopOrder}>{mapInfo.stopName}{mapInfo.side}</Timeline.Item>
+                timeLineItems.push(tmp)
+                currentBusArray?.forEach((currentBus) => {
+                    if (mapInfo.stopOrder === currentBus.inorder) {
+                        let busTmp = <Timeline.Item key={currentBus.busno} dot={<BusLogo/>}>
+                            {currentBus.linename}--{currentBus.busno}
+                           <br/> 速度：{currentBus.speed}
+                        </Timeline.Item>
+                        timeLineItems.push(busTmp)
+                    }
+
+                })
+            })
+
 
         return (
-            <StopsStyle>
+
+            <Timeline mode={'left'} >
                 {
-                    mapInfo?.map((item) => (
-                        <StopStyle>
-                            {`${item.stationNam}${item.side}`}
-                        </StopStyle>
+                    timeLineItems.map((value) => (
+                        value
                     ))
                 }
+            </Timeline>
 
 
-            </StopsStyle>
         )
     }
 
 
     return (
-        <BasePage>
-            <Header>
-                <button type={"button"} onClick={cleanInfo}>返回</button>
-                <h3>{selectedBusInfo?.linename}</h3>
-            </Header>
-            <Content>
-                <Main/>
-            </Content>
+        <BasePage title={selectedBusInfo?.linename} bordered={false}>
+
+
+            <Main/>
+            <Button onClick={cleanInfo}>返回</Button>
+
 
         </BasePage>
     )
 }
 
 const StopStyle = styled.li`
-  list-style:none;
+  list-style: none;
+  border: 1px solid #2e2e2e;
+  border-radius: 2px;
+  background: #2e2e2e;
 `
 
 const StopsStyle = styled.ul`
   display: none;
 `
 
-const BasePage = styled.div`
-  display: flex;
-  align-content: center;
-  justify-content: space-between;
+const BasePage = styled(Card)`
+  //display: flex;
+  //align-content: center;
+  //justify-content: space-between;
 
 `
 

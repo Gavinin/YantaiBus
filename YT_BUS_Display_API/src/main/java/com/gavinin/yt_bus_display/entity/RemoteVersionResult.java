@@ -14,18 +14,10 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Result {
+public class RemoteVersionResult {
 
-    private Object data;
+    private UpdateResource data;
     private String info;
     private Integer status;
-
-
-    public static Result success(Object data){
-        return new Result(data,"Success",1);
-    }
-    public static Result error(){
-        return new Result("","error",-1);
-    }
 
 }

@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Configuration;
  * @Version 1.0
  **/
 @Configuration
-@MapperScan(basePackages = {"com.gavinin.yt_bus_display.dao"})
+@MapperScan(basePackages = {"com.gavinin.yt_bus_display.mapper"})
 public class MyBatisConfiguration {
 
 }
