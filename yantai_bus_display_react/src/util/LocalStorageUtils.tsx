@@ -24,7 +24,7 @@ export const cleanUserInformation = () => {
 }
 
 export const setUserInformation = (userInfo: GetOnlineBusData) => {
-    if (userInfo.linename !== null && userInfo.upordown !== null) {
+    if (userInfo.linename !== undefined && userInfo.upordown !== undefined) {
         setItem(UserDataStats.SELECTED_BUS_LINE, userInfo.linename);
         setItem(UserDataStats.SELECTED_BUS_DIRECTION, userInfo.upordown);
     }
