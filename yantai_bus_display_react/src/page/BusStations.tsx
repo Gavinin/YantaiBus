@@ -50,6 +50,7 @@ const BusStations = () => {
 
     useEffect(() => {
         getMapInfo();
+        getBusInfo();
 
     },[selectedBusInfo])
     useInterval(async () => {
