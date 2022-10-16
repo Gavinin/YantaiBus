@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gavinin.yt_bus_display.mapper.BusDBMapper">
+
+    <select id="selectStopByLine" resultType="com.gavinin.yt_bus_display.entity.Stop">
+
+        select station_name as stopName, inorder as stopOrder, jingdu, weidu, side
+        from ytcx_line_station ls
+                 left join ytcx_line yl on ls.sub_lineid = yl.sub_lineid
+                 left join (select * from ytcx_station where station_name is not null) ys on ls.station_id = ys.siteid
+        where linename = #{lineName}
+          and yl.upordown = #{directionEnum}
+        order by inorder
+    </select>
+
+    <select id="findByLines" resultType="com.gavinin.yt_bus_display.entity.Line">
+        select linename as line, endsite || '-' || startsite as detail
+        from ytcx_line
+        <where>
+            <if test="line != null and line != ''">
+                line Like #{line}
+            </if>
+            <if test="direction != ''">
+              and  upordown=#{direction}
+            </if>
+        </where>
+
+        group by id
+    </select>
+
+
+</mapper>

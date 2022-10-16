@@ -1,0 +1,21 @@
+Error: Unable to access jarfile YT_BUS_Display-1.0
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v2.7.1)
+
+2022-10-11 23:44:46.015  INFO 32082 --- [           main] c.g.y.YtBusDisplayApplication            : Starting YtBusDisplayApplication using Java 11.0.15 on Gavins-iMac.local with PID 32082 (/Users/gavin/Develop/IdeaProjects/YantaiBus/YT_BUS_Display_API/release/YT_BUS_Display-1.0.jar started by gavin in /Users/gavin/Develop/IdeaProjects/YantaiBus/YT_BUS_Display_API/release)
+2022-10-11 23:44:46.021  INFO 32082 --- [           main] c.g.y.YtBusDisplayApplication            : No active profile set, falling back to 1 default profile: "default"
+2022-10-11 23:44:48.604  INFO 32082 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8810 (http)
+2022-10-11 23:44:48.626  INFO 32082 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-10-11 23:44:48.627  INFO 32082 --- [           main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.64]
+2022-10-11 23:44:48.845  INFO 32082 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-10-11 23:44:48.845  INFO 32082 --- [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2674 ms
+Logging initialized using 'class org.apache.ibatis.logging.stdout.StdOutImpl' adapter.
+Parsed mapper file: 'URL [jar:file:/Users/gavin/Develop/IdeaProjects/YantaiBus/YT_BUS_Display_API/release/YT_BUS_Display-1.0.jar!/BOOT-INF/classes!/mapper/busDbMapper.xml]'
+2022-10-11 23:44:50.632  INFO 32082 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8810 (http) with context path ''
+2022-10-11 23:44:50.652  INFO 32082 --- [           main] c.g.y.YtBusDisplayApplication            : Started YtBusDisplayApplication in 5.816 seconds (JVM running for 6.744)

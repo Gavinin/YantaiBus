@@ -1,0 +1,15 @@
+server:
+  port: 8810
+spring:
+  datasource:
+    driver-class-name: org.sqlite.JDBC
+    url: jdbc:sqlite:DB/ytcx.db
+mybatis:
+  mapper-locations: classpath*:mapper/*Mapper.xml
+  configuration:
+    cache-enabled: false
+    local-cache-scope: statement
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+
+

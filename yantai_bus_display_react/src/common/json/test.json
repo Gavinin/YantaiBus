@@ -1,0 +1,71 @@
+{
+    "data": [
+    {
+        "busno": "鲁F08618D",
+        "linename": "51路",
+        "upordown": "下行",
+        "inorder": "35",
+        "weidu": 37.52485900301345,
+        "jingdu": 121.42513779959916,
+        "nowstate": "1",
+        "speed": "0",
+        "gpstime": "2022-07-04 15:38:15.0",
+        "air": 0,
+        "a5": 0
+    },
+    {
+        "busno": "鲁F08023D",
+        "linename": "51路",
+        "upordown": "下行",
+        "inorder": "5",
+        "weidu": 37.426295177745224,
+        "jingdu": 121.51970314345554,
+        "nowstate": "1",
+        "speed": "11",
+        "gpstime": "2022-07-04 15:38:08.0",
+        "air": 0,
+        "a5": 0
+    },
+    {
+        "busno": "鲁F08092D",
+        "linename": "51路",
+        "upordown": "下行",
+        "inorder": "14",
+        "weidu": 37.46171351240446,
+        "jingdu": 121.4911842304919,
+        "nowstate": "1",
+        "speed": "0",
+        "gpstime": "2022-07-04 15:38:06.0",
+        "air": 0,
+        "a5": 0
+    },
+    {
+        "busno": "鲁F08671D",
+        "linename": "51路",
+        "upordown": "下行",
+        "inorder": "44",
+        "weidu": 37.55054654276328,
+        "jingdu": 121.39219730725512,
+        "nowstate": "1",
+        "speed": "12",
+        "gpstime": "2022-07-04 15:37:49.0",
+        "air": 0,
+        "a5": 0
+    },
+    {
+        "busno": "鲁F08330D",
+        "linename": "51路",
+        "upordown": "下行",
+        "inorder": "24",
+        "weidu": 37.48993663473655,
+        "jingdu": 121.45886681640054,
+        "nowstate": "1",
+        "speed": "25",
+        "gpstime": "2022-07-04 15:36:48.0",
+        "air": 0,
+        "a5": 0
+    }
+],
+    "info": "Success",
+    "status": 1
+}
