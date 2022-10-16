@@ -14,7 +14,7 @@
     </select>
 
     <select id="findByLines" resultType="com.gavinin.yt_bus_display.entity.Line">
-        select linename as line, endsite || '-' || startsite as detail
+        select linename as line, startsite || '-' || endsite as detail
         from ytcx_line
         <where>
             <if test="line != null and line != ''">
