@@ -13,6 +13,6 @@ yarn build start
 
 
 ## 预览地址
-http://bus.ps.gavinw.xyz
+http://ytbus.gavinin.space/
 
 如果对你有帮助，请点Star，谢谢🙏
